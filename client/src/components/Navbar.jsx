@@ -1,7 +1,6 @@
 
 import { Link } from "react-router"
 import { PlusIcon } from "lucide-react"
-import UserProfile from "./UserProfile"
 
 function Navbar() {
   return (
@@ -14,7 +13,6 @@ function Navbar() {
               <PlusIcon className="size-5" />
               <span>New Note</span>
             </Link>
-            <UserProfile />
           </div>
         </div>
       </div>
