@@ -4,6 +4,7 @@ import RateLimitUI from "../components/RateLimitUI";
 import axiosInstance from "../lib/axios";
 import toast from "react-hot-toast";
 import NoteCard from "../components/NoteCard";
+import NotesNotFound from "../components/NotesNotFound";
 
 
 function HomePage() {
@@ -40,7 +41,6 @@ function HomePage() {
   return (
     <div className="min-h-screen">
       <Navbar />
-
       {isRateLimit && <RateLimitUI />}
 
       <div className="container mx-auto px-4 py-8">
@@ -50,17 +50,14 @@ function HomePage() {
           </div>
         )}
 
-        {!loading && notes.length === 0 && (
-          <div className="text-center text-base-content/60 py-20 bg-base-200/50 rounded-xl border border-dashed border-base-300">
-            <p className="text-lg font-medium">No notes found</p>
-            <p className="text-sm mt-1">Create your first note to get started!</p>
-          </div>
+        {notes.length === 0 && !isRateLimit && (
+          <NotesNotFound />
         )}
 
         {notes.length > 0 && !isRateLimit && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {notes.map((note) => {
-              return <NoteCard key={note.id} note={note} setNotes={setNotes} />
+              return <NoteCard key={note._id} note={note} setNotes={setNotes} />
             })}
           </div>
         )}
